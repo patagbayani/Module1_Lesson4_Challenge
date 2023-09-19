@@ -1,1 +1,24 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.18;
+
+
+
+contract MessageContextContract {
+    address public sender;
+    uint public gasPrice;
+    uint public value;
+
+    function setMessageContext() public payable {
+        // Accessing global variables from msg object
+        sender = msg.sender; // Sender address
+        gasPrice = tx.gasprice; // Gas price of the transaction
+        value = msg.value; // Value (in wei) sent with the transaction
+    }
+
+    function getMessageContext() public view returns (address, uint, uint) {
+        return (sender, gasPrice, value);
+    }
+}
+
+
 
